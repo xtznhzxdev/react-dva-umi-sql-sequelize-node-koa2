@@ -1,0 +1,30 @@
+@import "~antd/lib/style/themes/default.less";
+
+.cardGrid{
+  .cardTitle {
+    font-size: 0;
+    a {
+      color: @heading-color;
+      margin-left: 12px;
+      line-height: 24px;
+      height: 24px;
+      display: inline-block;
+      vertical-align: top;
+      font-size: @font-size-base;
+      &:hover {
+        color: @primary-color;
+      }
+    }
+  }
+  :global{
+    .ant-card-meta-description{
+      height: 44px;
+    }
+  }
+}
+
+:global{
+  .ant-card-actions{
+    margin: 10px -24px -24px -24px;
+  }
+}

@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+// 运用ES6/ES7，需转换
+require('babel-register');
+
+const http = require('http');
+const app = require('../app.js');
+const config = require('../config');
+const server = http.createServer(app.callback());
+
+server.listen(config.port, (err) => {
+  if(err) {
+    console.error(err);
+  }
+  console.log(`Server up and running on port ${config.port}`);
+})
