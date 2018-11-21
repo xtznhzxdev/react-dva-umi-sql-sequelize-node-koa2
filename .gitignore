@@ -1,2 +1,5 @@
 server-sql/node_modules
+server-sql/config
 admin/node_modules
+
+server-sql/config-me
