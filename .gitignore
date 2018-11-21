@@ -1,5 +1,7 @@
 server-sql/node_modules
 server-sql/config
 admin/node_modules
+admin/dist
 
 server-sql/config-me
+.vscode
