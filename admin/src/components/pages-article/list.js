@@ -1,101 +1,47 @@
-import { Divider } from 'antd';
-import { PageTable } from '@/components';
-import {pagination} from '@/utils';
-
-const columns = [
-  {
-    title: '名称',
-    dataIndex: 'a',
-    key: 'a',
-    width: 200
-  },
-  {
-    title: '责任人',
-    dataIndex: 'b',
-    key: 'b'
-  },
-  {
-    title: '类型',
-    dataIndex: 'c',
-    key: 'c',
-    width: 100
-  },
-  {
-    title: '分类',
-    dataIndex: 'd',
-    key: 'd',
-    width: 100
-  },
-  {
-    title: '类目',
-    dataIndex: 'e',
-    key: 'e',
-    width: 200
-  },
-  {
-    title: '是否关注',
-    dataIndex: 'f',
-    key: 'f',
-    width: 100
-  },
-  {
-    title: '关注人数',
-    dataIndex: 'g',
-    key: 'g',
-    sorter: true,
-    width: 120
-  },
-  {
-    title: '访问量',
-    dataIndex: 'h',
-    sorter: true,
-    key: 'h',
-    width: 120
-  },
-  {
-    title: '操作',
-    dataIndex: 'actions',
-    key: 'actions',
-    fixed: 'right',
-    width: 200,
-    render: () => (
-      <div>
-        <a href="">类目编辑</a>
-        <Divider type="vertical" />
-        <a href="">责任人编辑</a>
-      </div>
-    )
-  }
-];
-
-const isLoaded = false;
-
-const List = ({
-  dataSource = [
-    {
-      id: 0,
-      a: 1
-    }
-  ]
+import { List, Icon, Avatar } from 'antd';
+import Link from 'umi/link';
+const ListItem = List.Item;
+const ArticleList = ({
+  loading,
+  list = []
 }) => {
-  const tableProps = {
-    loading: isLoaded,
-    columns,
-    dataSource,
-    rowKey: 'id',
-    pagination,
-    scroll: { x: 1400, y: 300 },
-    onPageChange (){
+  const IconText = ({ type, text }) => (
+    <span>
+      <Icon type={type} style={{ marginRight: 8 }} />
+      {text}
+    </span>
+  );
 
-    },
-    onShowSizeChange(){
-
-    }
-  };
+  const ListContent = ({ data: { title, content, updatedAt, id, authorId, authorName = '', avatar = ''} }) => (
+    <div>
+      <h2><Link to={`/article/${id}`}>{title}</Link></h2>
+      <p>{content}</p>
+      <div>
+        <Avatar src={avatar} size="small" /><Link to={`/user/${authorId}`}>{authorName}</Link> 发布于
+        <em>{updatedAt}</em>
+      </div>
+    </div>
+  );
 
   return (
-    <PageTable {...tableProps} />
+    <List
+      size="large"
+      loading={loading}
+      rowKey="id"
+      itemLayout="vertical"
+      dataSource={list}
+      renderItem={item => (
+        <ListItem
+          key={item.id}
+          actions={[
+            <IconText type="star-o" text={item.pv} />,
+            <IconText type="like-o" text={item.like} />,
+            <IconText type="message" text={item.replyCount} />,
+          ]}>
+          <ListContent data={item} />
+        </ListItem>
+      )}/>
   )
 }
 
-export default List;
+export default ArticleList;

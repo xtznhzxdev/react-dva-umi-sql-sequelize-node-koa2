@@ -1,7 +1,7 @@
 export default {
-  namespace: 'about',
+  namespace: 'mine',
   state: {
-    data: {}
+
   },
   subscriptions: {
 

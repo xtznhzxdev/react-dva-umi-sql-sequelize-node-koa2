@@ -5,8 +5,6 @@ const SettingView = ({
   setting,
   loading
 }) => {
-  console.log('setting', setting)
-  console.log('loading', loading)
   return (
     <div>
       <h1>设置</h1>

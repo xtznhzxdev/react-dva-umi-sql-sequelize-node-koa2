@@ -1,22 +1,17 @@
 import { connect } from 'dva';
-import { Button, Icon } from 'antd';
 import { PageLayout } from '@/components';
-import styles from './index.less';
 
-const IndexView = ({
+const Home = ({
   dispatch,
   location,
-  dashboard,
+  home,
   loading
 }) => {
-  console.log('dashboard', dashboard)
   return (
-    <PageLayout
-      location={location}
-    >
-      dashboard
-    </PageLayout>
+    <>
+      <h1>首页</h1>
+    </>
   );
 }
 
-export default connect(({ dashboard, loading }) => ({ dashboard, loading }))(IndexView);
+export default connect(({ home, loading }) => ({ home, loading }))(Home);

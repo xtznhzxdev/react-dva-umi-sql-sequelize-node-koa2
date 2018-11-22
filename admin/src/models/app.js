@@ -3,7 +3,7 @@ import * as api from '../services/app';
 import { menusData, setLogout } from '@/utils'
 
 export default {
-  name: 'app',
+  namespace: 'app',
   state: {
     collapsed: false,
     userInfo: {

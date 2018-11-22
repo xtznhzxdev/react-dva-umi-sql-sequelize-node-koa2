@@ -30,8 +30,12 @@ export default ({
           mode="horizontal"
           style={{ float: 'left', lineHeight: '64px' }}>
           <MenuItem key="home"><Link to="/">首页</Link></MenuItem>
+          <MenuItem key="article"><Link to="/article">我手写我口</Link></MenuItem>
+          <MenuItem key="wenda"><Link to="/wenda">有问有答</Link></MenuItem>
+          <MenuItem key="book"><Link to="/book">读书领读</Link></MenuItem>
+          <MenuItem key="tool"><Link to="/tool">上帝之手</Link></MenuItem>
           {username ? <MenuItem key="notices"><Link to="/mine/notices">未读通知</Link></MenuItem>: null}
-          <MenuItem key="getstart"><Link to="/getstart">新手入门</Link></MenuItem>
+          <MenuItem key="getstart"><Link to="/newstart">新手入门</Link></MenuItem>
           <MenuItem key="api"><Link to="/api">API</Link></MenuItem>
           <MenuItem key="about"><Link to="/about">关于</Link></MenuItem>
           {username ? null : <MenuItem key="register"><Link to="/register">注册</Link></MenuItem>}

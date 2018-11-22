@@ -1,5 +1,5 @@
 export default {
-  namespace: 'about',
+  namespace: 'book',
   state: {
     data: {}
   },

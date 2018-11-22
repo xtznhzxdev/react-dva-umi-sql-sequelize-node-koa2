@@ -65,42 +65,54 @@ export const avatarUrl = 'https://gw.alipayobjects.com/zos/rmsportal/Biazfanxmam
 // 左侧菜单
 export const menusData = [
   {
-    title: '一览众生',
-    link: '/',
+    title: '一览众生晓',
+    link: '/mine/',
     key: 'dashboard',
     icon: 'dashboard',
     iconTheme: 'outlined'
   },
   {
-    title: '我的待办',
-    link: '/todo',
+    title: '要去做的事',
+    link: '/mine/todo',
     key: 'todo',
-    icon: 'bars',
+    icon: 'calendar',
     iconTheme: 'outlined'
   },
   {
-    title: '活在当下',
-    link: '/moment',
-    key: 'moment',
-    icon: 'schedule',
-    iconTheme: 'outlined',
-    children: [
-      {
-        title: '技术文章',
-        link: '/moment/article',
-        key: 'article'
-      },
-      {
-        title: '远虑近忧',
-        link: '/moment/plan',
-        key: 'plan'
-      },
-      {
-        title: '它山之石',
-        link: '/moment/tool',
-        key: 'tool'
-      }
-    ]
+    title: '左右手写我口',
+    link: '/mine/article',
+    key: 'article',
+    icon: 'bulb'
+  },
+  {
+    title: '去新建书单',
+    link: '/mine/book',
+    key: 'book',
+    icon: 'book'
+  },
+  {
+    title: '有问就去提',
+    link: '/mine/wen',
+    key: 'wen',
+    icon: 'bulb'
+  },
+  {
+    title: '有想法就答',
+    link: '/mine/da',
+    key: 'da',
+    icon: 'bulb'
+  },
+  {
+    title: '给我的消息',
+    link: '/mine/notices',
+    key: 'notices',
+    icon: 'notification'
+  },
+  {
+    title: '创造新工具',
+    link: '/mine/tool',
+    key: 'tool',
+    icon: 'diff'
   }
 ];
 

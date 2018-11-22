@@ -1,7 +1,7 @@
 export default {
-  namespace: 'about',
+  namespace: 'mineBook',
   state: {
-    data: {}
+
   },
   subscriptions: {
 

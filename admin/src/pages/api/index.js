@@ -5,12 +5,8 @@ const ApiView = ({
   api,
   loading
 }) => {
-  console.log('api', api)
-  console.log('loading', loading)
   return (
-    <div>
-      <h1>api</h1>
-    </div>
+    <h1>api</h1>
   );
 }
 
