@@ -1,6 +1,6 @@
 import { request } from '@/utils';
 
-export const queryArticleList = (payload) => {
+export const postArticleList = (payload) => {
   return request('/article/list', {
     method: 'POST',
     body: payload,

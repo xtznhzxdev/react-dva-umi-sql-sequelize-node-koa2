@@ -2,12 +2,11 @@ import { connect } from 'dva';
 import { Card, Calendar, Drawer } from 'antd';
 import moment from 'moment';
 import { dateFormat } from '@/utils';
-import { PageLayout } from '@/components';
 import { DayList, MonthList, FirstModal } from '@/components/pages-todo';
 import styles from './index.less';
 
 const startMoment = '1989-10-01';
-const endMoment = moment().add(1, 'years').endOf('month').format();
+const endMoment = moment().add(1, 'month').endOf('month').format();
 const namespace = 'todo';
 
 const TodoView = ({
@@ -122,7 +121,7 @@ const TodoView = ({
     onDeleteTodo(data){
       const { id, title } = data;
       dispatch({
-        type: `${namespace}/deleteTodo`,
+        type: `${namespace}/postDeleteTodo`,
         payload: { id, title }
       });
     },
@@ -130,7 +129,7 @@ const TodoView = ({
       let { id, title, status } = data;
       status = (status === 'todo') ? 'done' : 'todo';
       dispatch({
-        type: `${namespace}/postUpdateTodoStatus`,
+        type: `${namespace}/postUpdateTodo`,
         payload: { id, title, status }
       })
     }
@@ -181,8 +180,7 @@ const TodoView = ({
   }
 
   return (
-    <PageLayout
-      location={location}>
+    <>
       <Card bordered={false} loading={isLoaded}>
         <Calendar {...calendarProps} />
       </Card>
@@ -190,7 +188,7 @@ const TodoView = ({
         {drawerContent[dateMode]}
       </Drawer>
       <FirstModal {...firstModalProps} />
-    </PageLayout>
+    </>
   );
 }
 

@@ -1,14 +1,14 @@
-import React from 'react';
-import { ActivityIndicator } from 'antd-mobile';
+// 加载组件
+import { Spin, Alert } from "antd"
 
-function Loading({ isLoading }) {
-  return (
-    <ActivityIndicator
-      toast
-      test="努力加载中..."
-      animating={isLoading}
+const Loading = ({ tip = "", message = "", description = "" }) => (
+  <Spin tip={tip}>
+    <Alert
+      description={description}
+      message={`${message}努力加载中...`}
+      type="info"
     />
-  );
-}
+  </Spin>
+)
 
 export default Loading;

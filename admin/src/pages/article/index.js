@@ -1,7 +1,6 @@
 import { connect } from 'dva';
-import router from 'umi/router';
-import { Card, Button, Icon } from 'antd';
-import { PageLayout, Pagination } from '@/components';
+import { Card } from 'antd';
+import { Pagination } from '@/components';
 import { Search, List } from '@/components/pages-article';
 
 const namespace = 'article';
@@ -24,7 +23,7 @@ const ArticleView = ({
   };
 
   const listProps = {
-    loading: loading.effects[`${namespace}/queryArticalList`],
+    loading: loading.effects[`${namespace}/query`],
     list: articleList,
     path: '/article'
   };
@@ -33,7 +32,7 @@ const ArticleView = ({
     ...articlePagination,
     onChange(page, pageSize) {
       dispatch({
-        type: `${namespace}/queryArticalList`,
+        type: `${namespace}/query`,
         payload: {
           current: page,
           pageSize
@@ -42,7 +41,7 @@ const ArticleView = ({
     },
     onShowSizeChange(current, pageSize){
       dispatch({
-        type: `${namespace}/queryArticalList`,
+        type: `${namespace}/query`,
         payload: {
           current,
           pageSize
@@ -60,7 +59,6 @@ const ArticleView = ({
 
       {/* 文章列表及分页 */}
       <Card bordered={false}>
-        <Button type="dashed" style={{ marginBottom: 12, width: '100%' }} onClick={() => { router.push('/mine/article/add'); }}><Icon type="edit" />我有想法，立马写</Button>
         <List {...listProps} />
         <Pagination {...paginationProps} />
       </Card>

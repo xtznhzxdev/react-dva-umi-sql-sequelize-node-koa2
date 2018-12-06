@@ -1,0 +1,32 @@
+@import '../../assets/less/common.less';
+
+.authFooter{
+  position: relative;
+  height: 60px;
+  .font-size-sm;
+  padding: 6px 0;
+  color: @gray;
+  > div {
+    line-height: 24px;
+    text-align: center;
+  }
+  a {
+    color: @gray;
+    &:hover{
+      color: @primary;
+    }
+  }
+  &.hasMenu{
+    margin-left: 240px;
+  }
+  &.hasBg{
+    color: @white;
+    margin-top: -60px;
+    a{
+      color: @white;
+      &:hover{
+        color: @primary;
+      }
+    }
+  }
+}

@@ -13,23 +13,20 @@ export default {
       return history.listen(({ pathname }) => {
         if(pathname === '/article') {
           dispatch({
-            type: 'queryArticalList'
+            type: 'query'
           })
         }
       })
     }
   },
   effects: {
-    *queryArticalList({ payload = {} }, { call , put }) {
-      const data = {
-        current: pagination.current,
-        pageSize: pagination.pageSize,
-        category: 'all',
+    *query({ payload = {} }, { call , put }) {
+      const ret = yield call(api.postArticleList, {
+        pagination,
         ...payload
-      };
-      const ret = yield call(api.queryArticleList, data);
+      });
       if(ret.code === 0) {
-        ret.msg && message.success(ret.msg)
+        ret.msg && message.success(ret.msg);
         yield put({
           type: 'save',
           payload: {

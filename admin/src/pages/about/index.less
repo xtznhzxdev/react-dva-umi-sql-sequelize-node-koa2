@@ -1,0 +1,67 @@
+@import '../../assets/less/common.less';
+
+.profile{
+  :global{
+    .ant-list-item{
+      padding: 0;
+      .anticon{
+        margin-right: 12px;
+      }
+      a, span{
+        display: block;
+        width: 100%;
+        padding: 12px 0;
+        color: @gray;
+      }
+      a{
+        cursor: pointer;
+        &:hover{
+          color:@primary;
+        }
+      }
+    }
+  }
+}
+.timeline{
+  p{
+    line-height: 24px;
+  }
+  .list{
+    background-color: #fff;
+    margin: 0 0 0 -18px;
+  }
+  .description{
+    a{
+      color: @gray;
+      &:hover{
+        color: @primary;
+      }
+    }
+  }
+  :global {
+    .ant-card-body{
+      padding:0 24px;
+    }
+    .ant-avatar{
+      width: 100px;
+      height: 60px;
+      border-radius:3px;
+    }
+    .ant-list-split .ant-list-item{
+      border-bottom: 1px dashed #e8e8e8;
+      &:last-child {
+        border-bottom: 0 none;
+      }
+    }
+    .ant-list-item{
+      &:hover{
+        .ant-list-item-meta-description{
+          color: @primary;
+        }
+      }
+    }
+    .ant-timeline-item-content{
+      margin-left: 24px;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { Badge, Button, List } from 'antd';
+import { Badge, Button, List, Row, Col } from 'antd';
 import { todoStatus, todoCategory, statusColor } from '@/utils';
 import styles from './index.less';
 
@@ -34,10 +34,10 @@ const DayList = ({
     )
   };
 
-  const ListContent = ({ data: { category } }) => (
+  const ListContent = ({ data: { category, createdAt, updatedAt } }) => (
     <div className={styles.listContent}>
-      <h4>分类</h4>
-      <p>{todoCategory[category]}</p>
+      <p>创建于 {createdAt.substr(5)}</p>
+      <p>更新于 {updatedAt.substr(5)}</p>
     </div>
   );
 
@@ -53,8 +53,8 @@ const DayList = ({
           <List.Item
             actions={[ <a disabled={item.status === 'done'} onClick={() => { onEditTodo(item); }}>编辑</a>, <a disabled={item.status === 'done'} onClick={() => { onDeleteTodo(item); }}>删除</a>, <a onClick={() => { onSwitchTodo(item); }}>{item.status === 'todo' ? '我已完成' : '重新激活'}</a> ]}>
             <List.Item.Meta
-              title={<span style={{ color: statusColor[todoStatus[item.status]] }}>{item.title.substr(0, 15)}</span>}
-              description={item.description}
+              title={<span style={{ color: statusColor[todoStatus[item.status]] }}>[{todoCategory[item.category]}]{item.title.substr(0, 9)}</span>}
+              description={item.description.split('\n').map((item, index) => <p key={index}>{item}</p>)}
             />
            <ListContent data={item} />
           </List.Item>

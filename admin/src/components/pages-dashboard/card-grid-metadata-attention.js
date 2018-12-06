@@ -1,6 +1,6 @@
 import { Card, Avatar, Row, Col, Icon, Button } from 'antd';
 import Link from 'umi/link';
-import { avatarUrl } from '@/utils';
+import { imageUrl } from '@/utils';
 import styles from './card-grid-metadata.less';
 
 const CardGridMetadataAttention = ({
@@ -24,7 +24,7 @@ const CardGridMetadataAttention = ({
               <Card.Meta
                 title={(
                   <div className={styles.cardTitle}>
-                    <Avatar size="small" src={avatarUrl} />
+                    <Avatar size="small" src={imageUrl.avatar} />
                     <Link to={`/metadata/${item.id}`}>{item.title}</Link>
                   </div>
                 )}

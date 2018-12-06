@@ -15,7 +15,7 @@ export default {
         if(/\/article\/\d+/.test(pathname)) {
           const id = pathname.split('/').pop();
           dispatch({
-            type: 'getArticle',
+            type: 'query',
             payload: { id }
           })
         }
@@ -23,8 +23,8 @@ export default {
     }
   },
   effects: {
-    *getArticle({ payload = {} }, { call, put }) {
-      const ret = yield call(api.queryArticle, payload);
+    *query ({ payload = {} }, { call, put }) {
+      const ret = yield call(api.postArticleDetail, payload);
       if(ret.code === 0){
         yield put({
           type: 'save',
@@ -35,15 +35,15 @@ export default {
         })
       }
     },
-    *getOtherArticles({ payload = {} }, { select, call, put }) {
+    *postArticleList({ payload = {} }, { select, call, put }) {
       // 该作者的其他文章
       const data = {
         current: pagination.current,
         pageSize: pagination.pageSize,
-        category: 'all',
+        category: '',
         ...payload
       };
-      const ret = yield call(api.queryOtherArticles, data);
+      const ret = yield call(api.postArticleList, data);
       if(ret.code === 0){
         yield put({
           type: 'save',
@@ -63,7 +63,7 @@ export default {
 
       if(tabKey === 'otherArticles'){
         yield put({
-          type: 'getOtherArticles',
+          type: 'postArticleList',
           payload: {
             ...restProps
           }

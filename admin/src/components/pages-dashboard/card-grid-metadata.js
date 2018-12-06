@@ -1,6 +1,6 @@
 import { Card, Avatar, Row, Col } from 'antd';
 import Link from 'umi/link';
-import { avatarUrl } from '@/utils';
+import { imageUrl } from '@/utils';
 import styles from './card-grid-metadata.less';
 
 const CardGridMetadata = ({
@@ -25,7 +25,7 @@ const CardGridMetadata = ({
               <Card.Meta
                 title={(
                   <div className={styles.cardTitle}>
-                    <Avatar size="small" src={avatarUrl} />
+                    <Avatar size="small" src={imageUrl.avatar} />
                     <Link to={`/metadata/${item.id}`}>{item.title}</Link>
                   </div>
                 )}

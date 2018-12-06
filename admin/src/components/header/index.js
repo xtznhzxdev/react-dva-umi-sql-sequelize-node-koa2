@@ -1,6 +1,6 @@
 import { Layout, Menu, Spin, Dropdown, Avatar, Icon } from 'antd';
 import Link from 'umi/link';
-import { avatarUrl } from '@/utils'
+import { imageUrl } from '@/utils'
 import styles from './index.less';
 const { Header }  = Layout;
 const MenuItem = Menu.Item;
@@ -23,7 +23,7 @@ export default ({
 
   return (
     <Header>
-      <div className={styles.logo} />
+      <Link className={styles.logo} to="/">江湖再见</Link>
       <div className={styles.rightOpe}>
         <Menu
           theme="dark"
@@ -35,25 +35,20 @@ export default ({
           <MenuItem key="book"><Link to="/book">读书领读</Link></MenuItem>
           <MenuItem key="tool"><Link to="/tool">上帝之手</Link></MenuItem>
           {username ? <MenuItem key="notices"><Link to="/mine/notices">未读通知</Link></MenuItem>: null}
-          <MenuItem key="getstart"><Link to="/newstart">新手入门</Link></MenuItem>
-          <MenuItem key="api"><Link to="/api">API</Link></MenuItem>
-          <MenuItem key="about"><Link to="/about">关于</Link></MenuItem>
-          {username ? null : <MenuItem key="register"><Link to="/register">注册</Link></MenuItem>}
-          {username ? null : <MenuItem key="login"><Link to="/login">登录</Link></MenuItem>}
-        </Menu>
-        {username && (
-          <Dropdown overlay={menuMine}>
-            <span className={styles.account}>
+          {username ? <MenuItem key="mine">
+            <Link to="/mine">
               <Avatar
                 size="small"
                 className={styles.avatar}
-                src={avatarUrl}
+                src={imageUrl.avatar}
                 alt={username}
-              />
-              <span className={styles.username}>{username}</span>
-            </span>
-          </Dropdown>
-        )}
+                style={{ marginRight: 10 }}
+              /><span className={styles.username}>{username}</span>
+            </Link>
+          </MenuItem> : null}
+          {username ? null : <MenuItem key="register"><Link to="/register">注册</Link></MenuItem>}
+          {username ? null : <MenuItem key="login"><Link to="/login">登录</Link></MenuItem>}
+        </Menu>
       </div>
     </Header>
   )

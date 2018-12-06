@@ -63,12 +63,12 @@ exports.deleteTodo = async (ctx) => {
 
 // 更新待办事项
 exports.updateTodo = async (ctx) => {
-  const { token, id, title, description, category } = ctx.request.body;
+  const { token, id, title, category, description, status } = ctx.request.body;
   if(token) {
     try {
       const tokenVerify = await verify(token.split(' ')[1], config.sign);
       if(tokenVerify) {
-        await todoModel.updateTodo(id, { title, description, category });
+        await todoModel.updateTodo(id, { title, category, description, status });
         return ctx.body = {
           code: 0,
           msg: `待办事项更新成功！`

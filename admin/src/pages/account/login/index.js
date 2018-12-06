@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
-import { LoginForm } from '@/components';
+import { LoginForm } from '@/components/pages-account';
+import styles from './index.less';
 
 const LoginView = ({
   dispatch,
@@ -16,8 +17,11 @@ const LoginView = ({
     }
   }
   return (
-    <div>
-      <LoginForm {...loginFormProps} />
+    <div className={styles.loginWrap}>
+      <div className={styles.loginForm}>
+        <h2>账密登录</h2>
+        <LoginForm {...loginFormProps} />
+      </div>
     </div>
   )
 };

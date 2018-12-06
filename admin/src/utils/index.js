@@ -1,10 +1,12 @@
 import { request } from './request';
-import { isLogin, setLogin, setLogout } from './storage';
+import { isLogin, setLogin, setLogout, getToken } from './storage';
 import {
+  setting,
   formItemLayout,
+  gridLayout,
   articleCategory,
   pagination,
-  avatarUrl,
+  imageUrl,
   menusData,
   todoCategory,
   todoStatus,
@@ -19,11 +21,14 @@ export {
   isLogin,
   setLogin,
   setLogout,
+  getToken,
 
+  setting,
   formItemLayout,
+  gridLayout,
   articleCategory,
   pagination,
-  avatarUrl,
+  imageUrl,
   menusData,
   todoCategory,
   todoStatus,

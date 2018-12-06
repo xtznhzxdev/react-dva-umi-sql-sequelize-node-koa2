@@ -17,7 +17,7 @@ const Search = ({
         <FormItem>
           {getFieldDecorator('category')(
             <TagSelect onChange={onTagSelectChange} showAll expandable>
-              {articleCategory.map(item => <TagSelect.Option key={item.key} value={item.key}>{item.value}</TagSelect.Option>)}
+              {Object.keys(articleCategory).map(item => <TagSelect.Option key={item} value={item}>{articleCategory[item]}</TagSelect.Option>)}
             </TagSelect>
           )}
         </FormItem>

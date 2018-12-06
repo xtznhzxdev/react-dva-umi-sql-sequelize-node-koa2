@@ -1,5 +1,6 @@
 import { message } from 'antd';
 import moment from 'moment';
+import { getToken } from '@/utils';
 import * as api from './service';
 
 export default {
@@ -23,14 +24,14 @@ export default {
         if(pathname === '/mine/todo') {
           dispatch({
             type: 'query'
-          })
+          });
         }
-      })
+      });
     }
   },
   effects: {
     *query({ payload = {} }, { select, call, put }) {
-      payload.token = localStorage.getItem('as-token');
+      payload.token = getToken();
       let { currentDate, dateSearch } = yield select(state => state.todo);
       let { drawerItemUpdate, ...param } = payload;
       const ret = yield call(api.postTodoList, {
@@ -66,7 +67,7 @@ export default {
       }
     },
     *postCreateTodo({ payload = {} }, { call, put }) {
-      payload.token = localStorage.getItem('as-token');
+      payload.token = getToken();
       const ret = yield call(api.postTodoCreate, payload);
       if(ret.code === 0 ) {
         message.success(ret.msg);
@@ -81,9 +82,9 @@ export default {
         });
       }
     },
-    *deleteTodo({ payload = {} }, { call, put }) {
-      payload.token = localStorage.getItem('as-token');
-      const ret = yield call(api.deleteTodo, payload);
+    *postDeleteTodo({ payload = {} }, { call, put }) {
+      payload.token = getToken();
+      const ret = yield call(api.postDeleteTodo, payload);
       if(ret.code === 0 ) {
         message.success(`待办事项 ${payload.title} 删除成功`);
         yield put({
@@ -94,9 +95,8 @@ export default {
         });
       }
     },
-    *postUpdateTodo({ payload = {} }, { select, call, put }) {
-      const { visible } = yield select(state => state.todo);
-      const token = localStorage.getItem('as-token');
+    *postUpdateTodo({ payload = {} }, { call, put }) {
+      const token = getToken();
       const ret = yield call(api.postUpdateTodo, {
         token,
         ...payload
@@ -106,22 +106,6 @@ export default {
         yield put({
           type: 'hideModal'
         });
-        yield put({
-          type: 'query',
-          payload: {
-            drawerItemUpdate: true
-          }
-        });
-      }
-    },
-    *postUpdateTodoStatus({ payload = {} }, { select, call, put }) {
-      const token = localStorage.getItem('as-token');
-      const ret = yield call(api.postUpdateTodoStatus, {
-        token,
-        ...payload
-      });
-      if(ret.code === 0 ) {
-        message.success(`待办事项 （${payload.title}）${payload.status === 'done' ? '已完成，恭喜恭喜！' : '被重新激活！'}`);
         yield put({
           type: 'query',
           payload: {
@@ -139,7 +123,7 @@ export default {
       return { ...state, drawerVisible: true, ...action.payload }
     },
     hideDrawer(state, action){
-      return { ...state, drawerVisible: false, ...action.payload }
+      return { ...state, drawerVisible: false, drawerItem: {} }
     },
     setDrawer(state, action){
       return { ...state, drawerItem: action.payload }

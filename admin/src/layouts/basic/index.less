@@ -1,21 +1,29 @@
-.sider {
-  min-height: calc(~'100vh - 64px');
-  overflow: auto;
-  position: fixed;
-  left: 0;
-  width: 240px;
-  background-color: #001529;
+@import '../../assets/less/common.less';
+
+.layoutBody{
+  margin-top: 64px;
+  min-height: calc(~'100vh - 124px');
+  background-color: @bg-color-gray;
 }
 
-.collapsedBar {
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  cursor: pointer;
-  :global{
-    .anticon{
-      font-size: 20px;
-      color: #fff;
-    }
-  }
-}
+// .sider {
+//   min-height: calc(~'100vh - 64px');
+//   overflow: auto;
+//   position: fixed;
+//   left: 0;
+//   width: 240px;
+//   background-color: #001529;
+// }
+
+// .collapsedBar {
+//   height: 40px;
+//   line-height: 40px;
+//   text-align: center;
+//   cursor: pointer;
+//   :global{
+//     .anticon{
+//       font-size: 20px;
+//       color: #fff;
+//     }
+//   }
+// }

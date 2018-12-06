@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import moment from 'moment';
 import Todo from '../schema/todo';
-import { print } from '../utils';
+import { print, validateFields } from '../utils';
 
 const Op = Sequelize.Op;
 
@@ -28,9 +28,11 @@ exports.updateTodo = async (id, data) => {
   if(!data) {
     return {}
   }
+
+  const fields = validateFields(data, ['title', 'category', 'description', 'status', 'updatedAt']);
   await Todo.update(data, {
     where: { id },
-    fields: ['title', 'description', 'category', 'updatedAt']
+    fields: fields
   });
 }
 

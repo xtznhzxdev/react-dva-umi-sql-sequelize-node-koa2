@@ -14,45 +14,90 @@ export default class PageHeader extends PureComponent {
     }
   };
 
-  onBreadcrumbData = (pathname, data) => {
+  onBreadcrumbData = ({ pathname, data, prefixBreadcrumb, suffixBreadcrumb }) => {
     if(pathname === '/') {
       pathname = ['dashboard'];
     } else {
       pathname = pathname.substr(1).split('/');
     }
-    const titles = [];
 
+    const titles = [];
     const fn = (pathname, arr) => {
-      const tmp = pathname.shift();
-      arr.forEach(item => {
-        if(item.key === tmp) {
-          titles.push(item);
-          if(item.children) {
-            fn(pathname, item.children);
+      pathname.forEach(item => {
+        arr.forEach(v => {
+          if(item === v.key) {
+            titles.push(v);
+            if(v.children) {
+              fn(pathname, v.children);
+            }
           }
-        }
+        })
       })
     }
     fn(pathname, data);
+
+    if(prefixBreadcrumb) {
+      if(prefixBreadcrumb.length === 1) {
+        titles.unshift(prefixBreadcrumb[0]);
+      }
+    }
+    if(suffixBreadcrumb) {
+      if(suffixBreadcrumb.length === 1) {
+        titles.push(suffixBreadcrumb[0]);
+      }
+    }
+
     return titles;
   }
 
   render() {
-    const { title, logo, action, content, extraContent, tabList, tabKey, className, linkElement = 'a' } = this.props;
+    const {
+      title,
+      logo,
+      action,
+      content,
+      extraContent,
+      tabList,
+      tabKey,
+      className,
+      location,
+      linkElement = 'a',
+      prefixBreadcrumb = [],
+      suffixBreadcrumb = []
+    } = this.props;
 
     const defaultActive = tabList && tabList.filter(item => item.default)[0];
 
     // 面包屑
     let breadcrumb = null;
-    if(this.props.location && this.props.location.pathname) {
-      let breadcrumbList = this.onBreadcrumbData(this.props.location.pathname, menusData);
-      if(this.props.breadcrumbMark) {
-        breadcrumbList = [...breadcrumbList, ...this.props.breadcrumbMark]
+    if(location && location.pathname) {
+      const param = {
+        pathname: location.pathname,
+        data: menusData
       }
+      if(prefixBreadcrumb && Array.isArray(prefixBreadcrumb) && prefixBreadcrumb.length) {
+        param.prefixBreadcrumb = prefixBreadcrumb;
+      }
+      if(suffixBreadcrumb && Array.isArray(suffixBreadcrumb) && suffixBreadcrumb.length) {
+        param.suffixBreadcrumb = suffixBreadcrumb;
+      }
+      let breadcrumbList = this.onBreadcrumbData(param);
+
       breadcrumb = (
         <Breadcrumb className={styles.content}>
           <Breadcrumb.Item key="home"><Link to="/">首页</Link></Breadcrumb.Item>
-          {breadcrumbList.map(item => <Breadcrumb.Item key={item.key}>{item.title}</Breadcrumb.Item>)}
+          {breadcrumbList.map(item => {
+            if(item.link) {
+              return (
+                <Breadcrumb.Item key={item.key}>
+                  <Link to={item.link}>{item.title || item.value}</Link>
+                </Breadcrumb.Item>
+              )
+            }
+            return (
+              <Breadcrumb.Item key={item.key}>{item.title || item.value}</Breadcrumb.Item>
+            )
+          })}
         </Breadcrumb>
       );
     }

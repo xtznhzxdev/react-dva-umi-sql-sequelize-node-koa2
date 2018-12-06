@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'; // 用来创建和确认用户信息摘要
 import util from 'util';
 import { userModel } from '../models';
 import config from '../config';
-import { print, tokenError } from '../utils';
+import { print, tokenError, tokenMaxAge } from '../utils';
 
 const verify = util.promisify(jwt.verify);
 
@@ -59,7 +59,7 @@ exports.signup = async(ctx) => {
       
       // 签发token-储存token失效有效期1小时
       const userToken = { id, username, power };
-      const token = jwt.sign(userToken, config.sign, { expiresIn: '1h' });
+      const token = jwt.sign(userToken, config.sign, { expiresIn: tokenMaxAge });
 
       return ctx.body = {
         code: 0,
@@ -118,12 +118,12 @@ exports.login = async(ctx) => {
       // 签发token-储存token失效有效期1小时
       const userToken = { 
         id: userInfo.id, 
-        userName: userInfo.username,
+        username: userInfo.username,
         power: userInfo.power,
         nickName: userInfo.nickName,
         avatar: userInfo.avatar
       };
-      const token = jwt.sign(userToken, config.sign, { expiresIn: '1h' });
+      const token = jwt.sign(userToken, config.sign, { expiresIn: tokenMaxAge });
       
       return ctx.body = {
         code: 0,

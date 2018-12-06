@@ -46,7 +46,6 @@ export default {
     },
     *getUserInfo({ payload = {} }, { select, call, put }) {
       const { userInfo } = yield select(state => state.app);
-      console.log('获取用户信息')
       if(!userInfo) {
         const data = yield call(api.queryUserInfo, payload);
         yield put({

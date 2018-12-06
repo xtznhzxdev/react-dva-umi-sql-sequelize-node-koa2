@@ -14,3 +14,8 @@ export const setLogin = ({ username, token }) => {
 export const isLogin = () => {
   return localStorage.getItem(TOKEN) ? true : false;
 }
+
+export const getToken = () => {
+  return localStorage.getItem(TOKEN);
+}
+

@@ -1,4 +1,4 @@
-function LoginLayout({
+function SimpleLayout({
   children
 }) {
   return (
@@ -8,4 +8,4 @@ function LoginLayout({
   )
 }
 
-export default LoginLayout;
+export default SimpleLayout;

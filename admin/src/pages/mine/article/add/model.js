@@ -1,11 +1,31 @@
+import { message } from 'antd';
+import router from 'umi/router';
+import * as api from './service';
+
 export default {
-  namespace: 'aritcleAction',
+  namespace: 'articleAction',
   state: {
-    data: {
-      name: '输出'
-    }
+    articleHtml: null
   },
   subscriptions: {},
-  effects: {},
-  reducers: {}
+  effects: {
+    *postArticleCreate({ payload = {} }, { call, put }){
+      const token = localStorage.getItem('as-token');
+      console.log('payload', payload);
+      const ret = yield call(api.postArticleCreate, {
+        token,
+        ...payload
+      });
+      if(ret.code === 0) {
+        ret.msg && message.success(ret.msg);
+        router.push('/mine/article');
+      }
+    }
+  },
+  reducers: {
+    save(state, action) {
+      console.log('save', action)
+      return { ...state, ...action.payload }
+    }
+  }
 }

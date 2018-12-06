@@ -39,14 +39,14 @@ const Article = sequelizeConfig.define('article', {
   category: {
     type: Sequelize.STRING(55),
     allowNull: false,
-    defaultValue: 'all',
+    defaultValue: '',
     field: 'category',
     comment: '分类'
   },
   tag: {
     type: Sequelize.JSON,
     allowNull: false,
-    defaultValue: 'all',
+    defaultValue: '',
     field: 'tag',
     comment: '标签'
   },
@@ -72,21 +72,21 @@ const Article = sequelizeConfig.define('article', {
     comment: '回复数'
   },
   allowComment: {
-    type: Sequelize.BOOLEAN,
+    type: Sequelize.INTEGER(11),
     allowNull: false,
-    defaultValue: true,
+    defaultValue: 1,
     comment: '是否允许评论'
   },
   isPublic: {
-    type: Sequelize.BOOLEAN,
+    type: Sequelize.INTEGER(11),
     allowNull: false,
-    defaultValue: true,
+    defaultValue: 1,
     comment: "是否公开"
   },
   isRecommend: {
-    type: Sequelize.BOOLEAN,
+    type: Sequelize.INTEGER(11),
     allowNull: false,
-    defaultValue: false,
+    defaultValue: 0,
     comment: '是否为推荐'
   },
   createdAt: {

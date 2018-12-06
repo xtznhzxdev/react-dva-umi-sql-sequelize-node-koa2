@@ -12,10 +12,10 @@ const ArticleList = ({
     </span>
   );
 
-  const ListContent = ({ data: { title, content, updatedAt, id, authorId, authorName = '', avatar = ''} }) => (
+  const ListContent = ({ data: { title, description = '', updatedAt, id, authorId, authorName = '', avatar = ''} }) => (
     <div>
       <h2><Link to={`/article/${id}`}>{title}</Link></h2>
-      <p>{content}</p>
+      <p>{description}</p>
       <div>
         <Avatar src={avatar} size="small" /><Link to={`/user/${authorId}`}>{authorName}</Link> 发布于
         <em>{updatedAt}</em>

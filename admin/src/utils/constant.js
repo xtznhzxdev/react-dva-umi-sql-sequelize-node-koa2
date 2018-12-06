@@ -1,3 +1,8 @@
+export const setting = {
+  siteName: '江湖再见',
+  author: '胖芮'
+};
+
 // 分页
 export const pagination = {
   current: 1,
@@ -11,56 +16,34 @@ export const formItemLayout = {
   wrapperCol: { span: 18 },
 }
 
+
+export const gridLayout = {
+  xs: 24,
+  sm: 24,
+  md: 12,
+  lg: 8
+}
+
 // 分类
-export const articleCategory = [
-  {
-    key: 'html',
-    value: 'HTML/CSS'
-  },
-  {
-    key: 'javascript',
-    value: 'Javascript'
-  },
-  {
-    key: 'vuejs',
-    value: 'Vue.js'
-  },
-  {
-    key: 'reactjs',
-    value: 'React.js'
-  },
-  {
-    key: 'nodejs',
-    value: 'Node.js'
-  },
-  {
-    key: 'jquery',
-    value: 'jQuery'
-  },
-  {
-    key: 'webapp',
-    value: 'WebApp'
-  },
-  {
-    key: 'fetool',
-    value: '前端工具'
-  },
-  {
-    key: 'python',
-    value: 'Python'
-  },
-  {
-    key: 'database',
-    value: '数据库'
-  },
-  {
-    key: 'machine',
-    value: '机器学习'
-  },
-];
+export const articleCategory = {
+  'html': 'HTML/CSS',
+  'javascript': 'Javascript',
+  'vuejs': 'Vue.js',
+  'reactjs': 'React.js',
+  'nodejs': 'Node.js',
+  'jquery': 'jQuery',
+  'webapp': 'WebApp',
+  'fetool': '前端工具',
+  'python': 'Python',
+  'database': '数据库',
+  'machine': '机器学习'
+};
 
 // 头像
-export const avatarUrl = 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png';
+export const imageUrl = {
+  avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+  image: 'https://i.alipayobjects.com/e/201311/1V4o0zhQPN_src.jpg'
+};
 
 // 左侧菜单
 export const menusData = [

@@ -1,6 +1,6 @@
 import { connect } from 'dva';
 import { Menu, Button, Dropdown, Icon, Card, Row, Col } from 'antd';
-import { PageLayout, Description, Pagination } from '@/components';
+import { PageLayout, Description, Pagination, EditorRead } from '@/components';
 import { List } from '@/components/pages-article';
 import { articleCategory } from '@/utils'
 import styles from './index.less';
@@ -46,6 +46,7 @@ const ArticleDetail = ({
   },
   loading
 }) => {
+  console.log('info', info)
   const content = (
     <Description className={styles.headerList} col="2">
       <DescriptionItem term="分类">{articleCategory[info.category]}</DescriptionItem>
@@ -73,21 +74,21 @@ const ArticleDetail = ({
   // 文章
   let articleContent = (
     <Card title="" style={{ marginBottom: 24 }} bordered={false}>
-      {info.content}
+      <EditorRead value={info.content} />
     </Card>
   );
 
   // 其他文章
   if(tabKey === 'otherArticles') {
     const listProps = {
-      loading: loading.effects[`${namespace}/getOtherArticles`],
+      loading: loading.effects[`${namespace}/postArticleList`],
       list: otherArticles
     }
     const paginationProps = {
       ...otherArticlesPagination,
       onChange(page, pageSize) {
         dispatch({
-          type: `${namespace}/getOtherArticles`,
+          type: `${namespace}/postArticleList`,
           payload: {
             current: page,
             pageSize
@@ -96,7 +97,7 @@ const ArticleDetail = ({
       },
       onShowSizeChange(current, pageSize){
         dispatch({
-          type: `${namespace}/getOtherArticles`,
+          type: `${namespace}/postArticleList`,
           payload: { current, pageSize }
         })
       }

@@ -34,8 +34,8 @@ exports.findOneArticle = async (id) => {
 
 // 获取文章列表
 exports.findArticleList = async ({ current = 1, pageSize = 20, category = '', sort = 'desc', authorId }) => {
-  current = parseInt(current, 10)
-  pageSize = parseInt(pageSize, 10)
+  current = parseInt(current, 10);
+  pageSize = parseInt(pageSize, 10);
   if((current <=0 )|| (pageSize <= 0)) {
     return {
       data: [],
@@ -56,7 +56,6 @@ exports.findArticleList = async ({ current = 1, pageSize = 20, category = '', so
   if(authorId) {
     where.authorId = authorId;
   }
-
   const ret = await Article.findAndCountAll({
     offset: (current - 1) * pageSize,
     limit: pageSize, // 每页多少

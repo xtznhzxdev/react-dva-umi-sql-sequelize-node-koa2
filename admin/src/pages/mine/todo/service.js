@@ -11,7 +11,7 @@ export const postTodoCreate = (payload) => {
 
 
 // 删除待办事项
-export const deleteTodo = (payload) => {
+export const postDeleteTodo = (payload) => {
   return request('/todo/delete', {
     method: 'POST',
     type: 'json',

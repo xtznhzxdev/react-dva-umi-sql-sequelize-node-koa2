@@ -15,7 +15,7 @@ export default ({
   return (
     <Col className={clsString} {...responsive[column]} {...restProps}>
       {term && <div className={sytles.term}>{term}</div>}
-      {((children !== 'undefined') && (children !== '') && (children !== null)) ? <div className={sytles.detail}>{children}</div> : '无'}
+      {<div className={sytles.detail}>{((children !== 'undefined') && (children !== '') && (children !== null)) ? children : ' '}</div>}
     </Col>
   )
 }
